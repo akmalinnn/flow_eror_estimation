@@ -1,0 +1,24 @@
+
+Raft/checkpoints/
+Raft/models/
+
+
+# Ignore all __pycache__ folders recursively
+**/__pycache__/
+
+# Ignore video files
+*.mp4
+
+*.jpg
+
+*.rar
+*.zip
+
+*.pth
+# Ignore JSON files
+*.json
+
+# Ignore image files
+*.png
+*.npy
+
