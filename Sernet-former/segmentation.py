@@ -48,13 +48,13 @@ def segmentation(image_path, save_dir="propainter_inputs/object_removal/mask"):
     for class_name in target_classes:
         if class_name in class_to_idx:
             class_mask = normalized_masks[0, class_to_idx[class_name]]
-            combined_mask = torch.logical_or(combined_mask, class_mask > 0.1)
+            combined_mask = torch.logical_or(combined_mask, class_mask > 0.3)
 
     # Convert mask to NumPy
     mask_np = combined_mask.cpu().numpy().astype(np.bool_)
 
     # **Apply Binary Dilation to Expand the Mask**
-    structure = np.ones((10, 10), dtype=np.bool_)  # Adjust size for more expansion
+    structure = np.ones((5, 5), dtype=np.bool_)  # Adjust size for more expansion
     mask_np_dilated = binary_dilation(mask_np, structure=structure)
 
     # Convert back to tensor

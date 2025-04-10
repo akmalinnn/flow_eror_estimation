@@ -62,7 +62,7 @@ def demo(raft_opts, imfile1, imfile2, output_dir):
 
         # Generate filename for saving the flow image
         flow_filename = os.path.join(output_dir, f"flow_{os.path.basename(imfile1)}")
-        npy_filename = os.path.join(output_dir, f"flow_{os.path.basename(imfile1)}).npy")
+        npy_filename = os.path.join(output_dir, f"flow_{os.path.basename(imfile1)}.npy")
         
         # Visualize and save the flow image
         # viz(flow_up, save_path=flow_filename)

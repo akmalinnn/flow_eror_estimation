@@ -125,15 +125,15 @@ def subtract_npy_files(input_folder, output_folder, frame_folder):
         if "rows" in indices_dict and "cols" in indices_dict:
             rows = indices_dict["rows"]
             cols = indices_dict["cols"]
-            data1[rows, cols, :] = 0  # Zero out masked pixels in data1
-            data2[rows, cols, :] = 0  # Zero out masked pixels in data2
+            data1[rows, cols, :] = 0  
+            data2[rows, cols, :] = 0  
 
         # Visualize original optical flows
         # visualize_flow(data1, title="Optical Flow - Frame 1")
         # visualize_flow(data2, title="Optical Flow - Frame 2")
 
         # Compute optical flow difference
-        difference = data1 - data2
+        difference = data2 - data1
 
         # Save the difference
         output_filename = f"diff_{npy_files[i].replace('.npy', '')}_{npy_files[i+1].replace('.npy', '')}.npy"

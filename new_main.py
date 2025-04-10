@@ -84,6 +84,17 @@ def save_frames(input_folder, output_folder, video_name):
     
     print(f"Saved frames and npy duplicates in: {output_folder}")
 
+def visualize_flow(flow, title="Optical Flow (RAFT Style)"):
+    """Visualize optical flow using RAFT's flow_viz module."""
+    flow_img = flow_viz.flow_to_image(flow)  # Convert flow to RGB image
+    
+    plt.figure(figsize=(10, 5))
+    plt.imshow(flow_img)
+    plt.axis("off")
+    plt.title(title)
+    plt.show()
+
+
 def subtract_npy_files(input_folder, output_folder, frame_folder):
     os.makedirs(output_folder, exist_ok=True)
     npy_files = sorted([f for f in os.listdir(input_folder) if f.endswith(".npy")])
@@ -108,7 +119,10 @@ def subtract_npy_files(input_folder, output_folder, frame_folder):
             data1[rows, cols, :] = 0
             data2[rows, cols, :] = 0
         
-        difference = data1 - data2
+        # visualize_flow(data1, title="Optical Flow - Frame 1")
+        # visualize_flow(data2, title="Optical Flow - Frame 2")
+        
+        difference = data2 - data1
         output_filename = f"diff_{npy_files[i].replace('.npy', '')}.npy"
         output_path = os.path.join(output_folder, output_filename)
         np.save(output_path, difference)
