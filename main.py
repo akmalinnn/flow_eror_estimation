@@ -23,7 +23,7 @@ FLOW_DIFF_FOLDER = "flow_diff"
 
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-# Ensure necessary folders exist
+
 os.makedirs(FLOW_IMAGE_FOLDER, exist_ok=True)
 os.makedirs(FLOW_DIFF_FOLDER, exist_ok=True)
 
@@ -151,8 +151,6 @@ def subtract_npy_files(input_folder, output_folder, frame_folder):
         print(f"Saved difference: {output_path}")
 
 
-
-# Main Batch Processing
 def main():
     video_files = [f for f in os.listdir(INPUT_FOLDER) if f.endswith(".mp4")]
     if not video_files:
@@ -183,11 +181,9 @@ def main():
             # Run segmentation before passing to RAFT
             # indices_dict = run_sernet_segmentation(frame2_path)
 
-            # Run RAFT with zeroed flow values
             run_raft_demo(raft_opts, frame1_path, frame2_path)
         
         save_frames(OUTPUT_FLOW_FRAMES_FOLDER, os.path.join(FLOW_IMAGE_FOLDER, video_name), video_name)
-        # Run NPY subtraction with segmentation masking
 
         clean_folder(OUTPUT_FLOW_FRAMES_FOLDER)
 
