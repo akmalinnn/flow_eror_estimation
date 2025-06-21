@@ -10,7 +10,7 @@ import numpy as np
 import cv2
 from scipy.ndimage import binary_dilation
 
-def segmentation(image_path, save_dir="propainter_inputs/object_removal/mask"):
+def segmentation(image_path, save_dir="object_removal/mask"):
     # Ensure save directory exists
     os.makedirs(save_dir, exist_ok=True)
     

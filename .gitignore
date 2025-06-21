@@ -1,6 +1,9 @@
 
 Raft/checkpoints/
 Raft/models/
+extraced_frames
+flow
+
 
 
 # Ignore all __pycache__ folders recursively

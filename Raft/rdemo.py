@@ -37,7 +37,7 @@ def viz(flo, save_path=None, npy_path=None, ):
         cv2.imwrite(save_path, flo_bgr)  # Save as an image (e.g., PNG, JPEG)
         print(f"Flow image saved at {save_path}")
 
-def demo(raft_opts, imfile1, imfile2, output_dir):
+def demo(raft_opts, imfile1, imfile2, output_dir="output_flow"):
     # Load the RAFT model
     model = torch.nn.DataParallel(RAFT(raft_opts))
     model.load_state_dict(torch.load(raft_opts.model))
@@ -45,7 +45,7 @@ def demo(raft_opts, imfile1, imfile2, output_dir):
     model.to(DEVICE)
     model.eval()
 
-    os.makedirs(output_dir, exist_ok=True)  # Ensure the output directory exists
+    os.makedirs(output_dir, exist_ok=True)  
 
     with torch.no_grad():
         # Load images
